@@ -1,4 +1,6 @@
 require 'fileutils'
 FileUtils.cd("/Users/aparato/.vim") do
 	FileUtils.mkdir("bundle")
+	FileUtils.cd("bundle")
+	exec "git clone git@github.com-aparato:Shougo/neobundle.vim"
 end

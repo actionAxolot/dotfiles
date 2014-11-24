@@ -1,7 +1,9 @@
+# Ruby looks funky
 require 'fileutils'
 
 begin
 	FileUtils.mkdir(File.expand_path("~/.vim"))
+	FileUtils.mkdir(File.expand_path("~/.emacs.d/vendor"))
 rescue
 	puts ".vim folder already exists"
 end

@@ -28,7 +28,13 @@ begin
 	FileUtils.cd(File.expand_path("~")) do
 		# Clone the repo
 		system("git clone git@github.com-aparato:robbyrussell/oh-my-zsh.git .oh-my-zsh")
-		system("chsh -s /bin/zsh")
+
+		# Check wheter this is a mac or something else
+		if (/darwin/ =~ RbConfig::CONFIG["host_os"])
+			system("chsh -s /bin/zsh")
+		else
+			system ("chsh -s /usr/bin/zsh")
+		end
 	end
 rescue
 	puts "OH-MY-ZSH already configured"

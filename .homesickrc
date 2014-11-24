@@ -1,7 +1,16 @@
 require 'fileutils'
-FileUtils.cd("/Users/aparato/.vim") do
-	FileUtils.mkdir("bundle")
+require 'file'
+FileUtils.cd(File.expand_path("~/.vim")) do
+	begin
+		FileUtils.mkdir("bundle")
+	rescue
+		puts "bundle folder already exists"
+	end
 	FileUtils.cd("bundle") do
-		system("git clone git@github.com-aparato:Shougo/neobundle.vim")
+		begin
+			system("git clone git@github.com-aparato:Shougo/neobundle.vim")
+		rescue
+			puts "Also, this has already been cloned"
+		end
 	end
 end

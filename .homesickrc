@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'file'
 FileUtils.cd(File.expand_path("~/.vim")) do
 	begin
 		FileUtils.mkdir("bundle")

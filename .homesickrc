@@ -1,4 +1,4 @@
 require 'fileutils'
-FileUtils.cd("~/.vim") do
+FileUtils.cd("/Users/aparato/.vim") do
 	FileUtils.mkdir("bundle")
 end

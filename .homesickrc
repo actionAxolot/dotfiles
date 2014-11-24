@@ -1,4 +1,11 @@
 require 'fileutils'
+
+begin
+	FileUtils.mkdir(File.expand_path("~/.vim"))
+rescue
+	puts ".vim folder already exists"
+end
+
 FileUtils.cd(File.expand_path("~/.vim")) do
 	begin
 		FileUtils.mkdir("bundle")

@@ -1,3 +1,4 @@
-exec "git clone git@github.com-aparato:Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim"
-exec "git clone git@github.com-aparato:robbyrussel/oh-my-zsh.git ~/.oh-my-zsh"
-exec "chsh -s /bin/zsh"
+require 'fileutils'
+FileUtils.cd("~/.vim") do
+	FileUtils.mkdir("bundle")
+end

@@ -13,3 +13,14 @@ FileUtils.cd(File.expand_path("~/.vim")) do
 		end
 	end
 end
+
+# Now we need to clone oh-my-zsh
+begin
+	FileUtils.cd(File.expand_path("~")) do
+		# Clone the repo
+		system("git clone git@github.com-aparato:robbyrussell/oh-my-zsh.git .oh-my-zsh")
+		system("chsh -s /bin/zsh")
+	end
+rescue
+	puts "OH-MY-ZSH already configured"
+end

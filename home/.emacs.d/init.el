@@ -7,6 +7,9 @@
 (prefer-coding-system 'utf-8-unix)
 (setq-default default-buffer-file-coding-system 'utf-8-unix)
 
+;; Remove that pesky custom stuff that I have no idea why it's here
+(setq custom-file "~/.emacs.d/custom.el")
+
 ;; Disable backups. I just hate the mess they make
 (setq backup-inhibited t)
 (setq auto-save-default nil)
@@ -27,13 +30,12 @@
 			   smex
                auto-complete
 			   helm
-               helm-ag
                yasnippet
                emmet-mode
                web-mode
                less-css-mode
                fiplr
-               gotham-theme)
+               color-theme-sanityinc-tomorrow)
   "Default packages")
 
 ;; Install packages if not already
@@ -62,48 +64,7 @@
 (transient-mark-mode t)
 
 ;; Set default theme
-(load-theme 'gotham t)
-
-;; (custom-set-variables '(linum-format (quote " %2d")))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   ["black" "#E2434C" "#86B187" "#E0D063" "#84C452" "#E18CBB" "#8AC6F2" "white"])
- '(custom-safe-themes
-   (quote
-    ("30a8a5a9099e000f5d4dbfb2d6706e0a94d56620320ce1071eede5481f77d312" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "f0a99f53cbf7b004ba0c1760aa14fd70f2eabafe4e62a2b3cf5cabae8203113b" "53e29ea3d0251198924328fd943d6ead860e9f47af8d22f0b764d11168455a8e" "97a2b10275e3e5c67f46ddaac0ec7969aeb35068c03ec4157cf4887c401e74b1" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" "dc46381844ec8fcf9607a319aa6b442244d8c7a734a2625dac6a1f63e34bc4a6" "e26780280b5248eb9b2d02a237d9941956fc94972443b0f7aeec12b5c15db9f3" "91b5a381aa9b691429597c97ac56a300db02ca6c7285f24f6fe4ec1aa44a98c3" "29a4267a4ae1e8b06934fec2ee49472daebd45e1ee6a10d8ff747853f9a3e622" "d293542c9d4be8a9e9ec8afd6938c7304ac3d0d39110344908706614ed5861c9" default)))
- '(fci-rule-color "#343d46")
- '(linum-format (quote dynamic))
- '(org-agenda-files
-   (quote
-    ("/Users/aparato/Dropbox/journal/diary.org" "/Users/aparato/Dropbox/journal/finances.org" "/Users/aparato/Dropbox/journal/ideas.org" "/Users/aparato/Dropbox/journal/notes.org" "/Users/aparato/Dropbox/journal/refile.org" "/Users/aparato/Dropbox/journal/clients/agn.org" "/Users/aparato/Dropbox/journal/clients/almondev.org" "/Users/aparato/Dropbox/journal/clients/fho.org" "/Users/aparato/Dropbox/journal/clients/newbody.org" "/Users/aparato/Dropbox/journal/clients/personal.org" "/Users/aparato/Dropbox/journal/clients/rewardz.org" "/Users/aparato/Dropbox/journal/clients/skreener.org" "/Users/aparato/Dropbox/journal/clients/soymarketing.org")))
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#bf616a")
-     (40 . "#DCA432")
-     (60 . "#ebcb8b")
-     (80 . "#B4EB89")
-     (100 . "#89EBCA")
-     (120 . "#89AAEB")
-     (140 . "#C189EB")
-     (160 . "#bf616a")
-     (180 . "#DCA432")
-     (200 . "#ebcb8b")
-     (220 . "#B4EB89")
-     (240 . "#89EBCA")
-     (260 . "#89AAEB")
-     (280 . "#C189EB")
-     (300 . "#bf616a")
-     (320 . "#DCA432")
-     (340 . "#ebcb8b")
-     (360 . "#B4EB89"))))
- '(vc-annotate-very-old-color nil))
+(color-theme-sanityinc-tomorrow-eighties)
 
 ;; Make stuff easier
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -114,15 +75,6 @@
 
 ;; Proper line wrapping
 (global-visual-line-mode t)
-
-;; enable paredit useful buffers
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook  #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook #'enable-paredit-mode)
 
 ;; Editing stuff
 (setq-default indent-tabs-mode nil)
@@ -301,22 +253,6 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; Jedi settings
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:setup-keys t)
-;; (setq jedi:complete-on-dot t)
-
 ;; Autocomplete settings
 (require 'auto-complete-config)
 (ac-config-default)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
-(put 'dired-find-alternate-file 'disabled nil)
-
-
-

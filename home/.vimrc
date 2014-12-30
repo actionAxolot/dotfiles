@@ -33,16 +33,15 @@ NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'vim-scripts/Tagbar.git'
 NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'whatyouhide/vim-gotham'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
+NeoBundle 'chriskempson/base16-vim'
 
 
 
@@ -95,7 +94,8 @@ set ttimeoutlen=100
 "let g:airline#extensions#tabline#enabled = 1
 
 "---Set Color Scheme---"
-colorscheme gotham256
+set background=dark
+colorscheme base16-default
 
 "---Tabs configuration---"
 set tabstop=4

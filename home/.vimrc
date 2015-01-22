@@ -1,5 +1,6 @@
 "--- Turn off vi compatibility ---"
 set nocompatible
+let base16colorspace=256
 
 "---fucking line endings
 set ffs=unix
@@ -41,13 +42,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
-NeoBundle 'chriskempson/base16-vim'
-
-
-
-if has("unix") || has("mac")
-    NeoBundle 'davidhalter/jedi-vim'
-endif
+NeoBundle 'ajh17/Spacegray.vim'
 
 call neobundle#end()
 
@@ -57,12 +52,6 @@ filetype plugin indent on
 
 "------ Vim-notes configuration
 let g:notes_directories = ['~/Dropbox/notes']
-
-
-"--- easytags ---"
-" let g:easytags_cmd = "/usr/local/Cellar/ctags/5.8/bin/ctags"
-" set tags=./tags;
-" let g:easytags_dynamic_files = 1
 
 "--- GUI window configurations ---"
 set winaltkeys=no
@@ -94,8 +83,7 @@ set ttimeoutlen=100
 "let g:airline#extensions#tabline#enabled = 1
 
 "---Set Color Scheme---"
-set background=dark
-colorscheme base16-default
+colorscheme spacegray
 
 "---Tabs configuration---"
 set tabstop=4
@@ -213,7 +201,7 @@ function! s:unite_settings()
 endfunction
 
 "--- clipboard this shit
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 
 " Ultisnips conf

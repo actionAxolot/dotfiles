@@ -25,8 +25,8 @@ endif
 
 "------- Packages to use ------"
 NeoBundleFetch 'Shougo/neobundle.vim'
+
 NeoBundle 'vim-scripts/delimitMate.vim.git'
-NeoBundle 'vim-scripts/Gundo.git'
 NeoBundle 'vim-scripts/L9.git'
 NeoBundle 'scrooloose/nerdcommenter.git'
 NeoBundle 'scrooloose/nerdtree.git'
@@ -38,13 +38,13 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'groenewege/vim-less'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'ajh17/Spacegray.vim'
 
 call neobundle#end()
+"------- Packages to use ------"
 
 syntax on
 filetype on
@@ -52,6 +52,8 @@ filetype plugin indent on
 
 "------ Vim-notes configuration
 let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_title_sync = 'rename_file'
+let g:notes_suffix = '.txt'
 
 "--- GUI window configurations ---"
 set winaltkeys=no

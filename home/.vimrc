@@ -27,7 +27,6 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-scripts/delimitMate.vim.git'
-NeoBundle 'vim-scripts/L9.git'
 NeoBundle 'scrooloose/nerdcommenter.git'
 NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'tpope/vim-surround.git'
@@ -42,6 +41,8 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-notes'
 NeoBundle 'ajh17/Spacegray.vim'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'davidhalter/jedi-vim'
 
 call neobundle#end()
 "------- Packages to use ------"
@@ -72,6 +73,10 @@ endif
 
 "---Remap key---"
 let mapleader = ","
+
+"--- Movement
+nnoremap j gj
+nnoremap k gk
 
 "---Fold Method---"
 set foldmethod=indent
@@ -162,7 +167,10 @@ nnoremap <C-l> <C-w>l
 map <leader>nt :NERDTreeToggle<CR>
 
 "---keybind for tagbar---"
-map <leader>tb :TagbarToggle<CR>
+map <leader><leader><leader> :TagbarToggle<CR>
+
+"--- buffer nav
+nnoremap <space><space> :bnext<CR>
 
 "--- Gundo mappings ---"
 map <leader>g :GundoToggle<CR>
@@ -183,9 +191,9 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 if has("win32")
-    nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
+    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
 else
-    nnoremap <leader>tt :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async<cr>
+    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async<cr>
     nnoremap <leader>a :Unite grep:.<cr>
 endif
 nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>

@@ -16,7 +16,7 @@ FileUtils.cd(File.expand_path("~/.vim")) do
 	end
 	FileUtils.cd("bundle") do
 		begin
-			system("git clone git@github.com-aparato:Shougo/neobundle.vim")
+			system("git clone git@github.com:Shougo/neobundle.vim")
 		rescue
 			puts "Also, this has already been cloned"
 		end

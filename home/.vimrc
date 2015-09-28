@@ -43,6 +43,7 @@ NeoBundle 'xolox/vim-notes'
 NeoBundle 'ajh17/Spacegray.vim'
 NeoBundle 'sjl/gundo.vim'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'scrooloose/syntastic'
 
 call neobundle#end()
 "------- Packages to use ------"
@@ -72,7 +73,7 @@ endif
 
 
 "---Remap key---"
-let mapleader = ","
+let mapleader = "\<space>"
 
 "--- Movement
 nnoremap j gj
@@ -128,7 +129,7 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<CR>
+nnoremap ,, :noh<CR>
 
 "---Vim Longlines mess---"
 set textwidth=100
@@ -167,7 +168,7 @@ nnoremap <C-l> <C-w>l
 map <leader>nt :NERDTreeToggle<CR>
 
 "---keybind for tagbar---"
-map <leader><leader><leader> :TagbarToggle<CR>
+map <leader><leader><leader> :TagbarToggle<CR>:noh<CR>
 
 "--- buffer nav
 nnoremap <space><space> :bnext<CR>
@@ -182,7 +183,7 @@ set dir=~/tmp
 
 "------ Misc. Bindings -----"
 "- Codefolding remap -"
-nnoremap <space> za
+nnoremap zz za
 
 "--- Create mappings to edit and source vimrc ---"
 nmap <leader>vr :tabedit $MYVIMRC<CR>
@@ -213,6 +214,21 @@ endfunction
 "--- clipboard this shit
 "set clipboard=unnamedplus
 
+"--- Syntastic configuration
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 3
+
+let g:syntastic_python_checkers = ["flake8"]
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " Ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"

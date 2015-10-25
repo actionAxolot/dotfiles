@@ -39,11 +39,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-notes'
 NeoBundle 'ajh17/Spacegray.vim'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'scrooloose/syntastic'
 
 call neobundle#end()
 "------- Packages to use ------"
@@ -51,11 +48,6 @@ call neobundle#end()
 syntax on
 filetype on
 filetype plugin indent on
-
-"------ Vim-notes configuration
-let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_title_sync = 'rename_file'
-let g:notes_suffix = '.txt'
 
 "--- GUI window configurations ---"
 set winaltkeys=no
@@ -213,22 +205,6 @@ endfunction
 
 "--- clipboard this shit
 "set clipboard=unnamedplus
-
-"--- Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 3
-
-let g:syntastic_python_checkers = ["flake8"]
-
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
 " Ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"

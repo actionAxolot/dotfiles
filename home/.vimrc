@@ -1,12 +1,11 @@
 "--- Turn off vi compatibility ---"
-set nocompatible
 let base16colorspace=256
 
 "---fucking line endings
 set ffs=unix
 
 "--- Have jj escape insert mode ---"
-inoremap jj <Esc>
+inoremap fd <Esc>
 
 "---- Color in terminal ----"
 if has("unix") || has("mac")
@@ -41,6 +40,10 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'ajh17/Spacegray.vim'
 NeoBundle 'sjl/gundo.vim'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'Valloric/YouCompleteMe'
 
 call neobundle#end()
 "------- Packages to use ------"
@@ -58,7 +61,7 @@ set guioptions-=L
 if has("mac")
     set guifont=Monaco\ Mono\ 10
 elseif has("unix")
-    set guifont=Ubuntu\ Mono\ 10
+    set guifont=Source\ Code\ Pro\ 10
 else
     set guifont=Inconsolata:h11
 endif
@@ -78,9 +81,6 @@ set foldlevel=99
 "---compatibility and security---"
 set modelines=0
 set ttimeoutlen=100
-
-"--- Airport conf ----"
-"let g:airline#extensions#tabline#enabled = 1
 
 "---Set Color Scheme---"
 colorscheme spacegray
@@ -128,7 +128,7 @@ set textwidth=100
 set formatoptions=qrn1
 
 "---Mappings to show hidden characters---"
-nmap <leader>l :set list!<CR>
+nmap <leader>fl :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 "---Match it configuration---"
@@ -147,26 +147,27 @@ set completeopt=menuone,longest,preview,menu
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 
-"---Working with windows---"
+"---Window operations---"
 set winminheight=0
 nnoremap <leader>wv <C-w>v<C-w>l
 nnoremap <leader>ws <C-w>s<C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
 
 "---Keybind NerdTree---"
-map <leader>nt :NERDTreeToggle<CR>
+map <leader>pt :NERDTreeToggle<CR>
 
 "---keybind for tagbar---"
-map <leader><leader><leader> :TagbarOpenAutoClose<CR>:noh<CR>
+map <leader>ft :TagbarOpenAutoClose<CR>:noh<CR>
 
 "--- buffer nav
-nnoremap <space><space> :bnext<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
 
 "--- Gundo mappings ---"
-map <leader>g :GundoToggle<CR>
+map <leader>fg :GundoToggle<CR>
 
 "---Store Backup files in a central place---"
 set backup
@@ -175,10 +176,13 @@ set dir=~/tmp
 
 "------ Misc. Bindings -----"
 "- Codefolding remap -"
-nnoremap zz za
+nnoremap <leader>fz za
 
 "--- Create mappings to edit and source vimrc ---"
 nmap <leader>vr :tabedit $MYVIMRC<CR>
+
+"--- Neovim terminal stuff ----"
+tnoremap fd <C-\><C-n>
 
 " --- Unite and stuff ---"
 let g:unite_source_history_yank_enable = 1
@@ -187,13 +191,13 @@ if has("win32")
     nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
 else
     nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async<cr>
-    nnoremap <leader>a :Unite grep:.<cr>
+    nnoremap <leader>ua :Unite grep:.<cr>
 endif
-nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>h :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+nnoremap <leader>uf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+nnoremap <leader>ur :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
+nnoremap <leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+nnoremap <leader>uh :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+nnoremap <leader>ub :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -206,12 +210,19 @@ endfunction
 "--- clipboard this shit
 "set clipboard=unnamedplus
 
+" YouCompleteMe
+let g:ycm_key_list_select_completion = ["<C-n>", "<Down>"]
+let g:ycm_key_list_previous_completion = ["<C-p>", "<Up>"]
+let g:SuperTabDefaultCompletionType = "<C-n>"
+
 " Ultisnips conf
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " --- Making clipboards play nice
-map <leader>y "+y
-map <leader>p "+p
+map <leader>fy "+y
+map <leader>fp "+p
 
 " ---- Check for uninstalled bundles
 NeoBundleCheck

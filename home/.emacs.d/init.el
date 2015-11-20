@@ -34,6 +34,7 @@
                emmet-mode
                web-mode
                less-css-mode
+               org-pomodoro
                fiplr
                color-theme-sanityinc-tomorrow)
   "Default packages")
@@ -213,16 +214,18 @@
 ; notes file
 (setq org-default-notes-file (format "%s/%s" org-base-path "notes.org"))
 
-;; This is so that it works with the android app
-(setq org-mobile-directory (format "%s/%s" org-base-path "mobile"))
-(setq org-directory org-base-path)
-
 ; Agenda stuff
 ;;(setq org-agenda-files (quote ((format "%s" org-base-path))))
-(setq org-agenda-files (list org-base-path (format "%s/%s" org-base-path "clients")))
-(setq org-mobile-files (list org-base-path (format "%s/%s" org-base-path "clients")))
+(setq org-agenda-files (list org-base-path (format "%s/%s" org-base-path "projects")))
 
-(setq org-mobile-inbox-for-pull (format "%s/%s/%s" org-base-path "inbox" "inbox.org"))
+(setq org-refile-targets '((nil :maxlevel . 2)
+                                ; all top-level headlines in the
+                                ; current buffer are used (first) as a
+                                ; refile target
+                           (org-agenda-files :maxlevel . 2)))
+
+(setq org-refile-use-outline-path 'file)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
 
 ; Org capture templates
 (setq org-capture-templates

@@ -188,9 +188,9 @@ tnoremap fd <C-\><C-n>
 let g:unite_source_history_yank_enable = 1
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 if has("win32")
-    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec<cr>
+    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec<cr>
 else
-    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async<cr>
+    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files -auto-resize -start-insert file_rec/async:!<cr>
     nnoremap <leader>ua :Unite grep:.<cr>
 endif
 nnoremap <leader>uf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>

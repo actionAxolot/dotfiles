@@ -51,6 +51,7 @@ call neobundle#end()
 syntax on
 filetype on
 filetype plugin indent on
+filetype plugin on
 
 "--- GUI window configurations ---"
 set winaltkeys=no
@@ -141,11 +142,12 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
-set completeopt=menuone,longest,preview,menu
 
 "---Indentation according to filetype---"
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
+set completeopt=menuone,longest,preview,menu
 
 "---Window operations---"
 set winminheight=0
@@ -223,6 +225,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
+
 
 " ---- Check for uninstalled bundles
 NeoBundleCheck

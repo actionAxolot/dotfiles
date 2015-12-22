@@ -22,3 +22,5 @@ FileUtils.cd(File.expand_path("~/.vim")) do
 		end
 	end
 end
+
+FileUtils.ln_s(File.expand_path("~/.vim"), File.expand_path("~/.config/nvim"))

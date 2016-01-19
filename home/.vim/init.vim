@@ -3,6 +3,7 @@ let base16colorspace=256
 
 "---fucking line endings
 set ffs=unix
+set rtp+=~/.fzf
 
 "--- Have jj escape insert mode ---"
 inoremap fd <Esc>
@@ -27,15 +28,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-scripts/delimitMate.vim.git'
 NeoBundle 'scrooloose/nerdcommenter.git'
-NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'tpope/vim-surround.git'
-NeoBundle 'vim-scripts/Tagbar.git'
 NeoBundle 'mattn/emmet-vim.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'ajh17/Spacegray.vim'
@@ -44,6 +41,7 @@ NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'junegunn/fzf.vim'
 
 call neobundle#end()
 "------- Packages to use ------"
@@ -158,18 +156,26 @@ nnoremap <leader>wj <C-w>j
 nnoremap <leader>wk <C-w>k
 nnoremap <leader>wl <C-w>l
 
-"---Keybind NerdTree---"
-map <leader>pt :NERDTreeToggle<CR>
-
-"---keybind for tagbar---"
-map <leader>ft :TagbarOpenAutoClose<CR>:noh<CR>
-
 "--- buffer nav
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 
 "--- Gundo mappings ---"
 map <leader>fg :GundoToggle<CR>
+
+"---- fzf configs ---- "
+" Files, Buffers, BTags, Blines, Ag, Lines :Bcommits, Commits
+nnoremap <silent> <C-t> :Files<CR>
+nnoremap <silent> <leader>bf :Buffers<CR>
+nnoremap <silent> <leader>bt :BTags<CR>
+nnoremap <silent> <leader>bl :BLines<CR>
+nnoremap <silent> <leader>pa :Ag<CR>
+nnoremap <silent> <leader>pl :Lines<CR>
+nnoremap <silent> <leader>bc :BCommits<CR>
+nnoremap <silent> <leader>pc :Commits<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 "---Store Backup files in a central place---"
 set backup
@@ -186,32 +192,6 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 "--- Neovim terminal stuff ----"
 tnoremap fd <C-\><C-n>
 
-" --- Unite and stuff ---"
-let g:unite_source_history_yank_enable = 1
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-if has("win32")
-    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec<cr>
-else
-    nnoremap <C-t> :<C-u>Unite -no-split -buffer-name=files -auto-resize -start-insert file_rec/async:!<cr>
-    nnoremap <leader>ua :Unite grep:.<cr>
-endif
-nnoremap <leader>uf :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>ur :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>uh :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>ub :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
-
-"--- clipboard this shit
-"set clipboard=unnamedplus
-
 " YouCompleteMe
 let g:ycm_key_list_select_completion = ["<C-n>", "<Down>"]
 let g:ycm_key_list_previous_completion = ["<C-p>", "<Up>"]
@@ -225,7 +205,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
-
 
 " ---- Check for uninstalled bundles
 NeoBundleCheck
